@@ -3,7 +3,7 @@ pragma solidity ^0.5.16;
 import "./ownable.sol" ; 
 import "./user.sol" ; 
 
-contract Token is UserContract, Ownable {
+contract Token is UserContract, Ownable, SafeMath {
     string public nameToken;
     string public symbolToken;
     uint public totalSupply ;

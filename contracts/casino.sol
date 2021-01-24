@@ -36,7 +36,7 @@ contract Casino is Token {
     function withdrawLiquidity(uint _amount) external onlyOwner(){
         require (_amount <= availableSupply, "Il n'y a pas assez de tokens disponibles") ; 
         Token.totalSupply -= _amount ; 
-        Token.totalSupply -= _amount ;
+        Token.availableSupply -= _amount ;
         msg.sender.transfer(_amount/Token.multiplyToken );
         Token.updateAvailableSupply();
         emit newWithdrawLiquidity( Token.totalSupply, Token.availableSupply) ;
