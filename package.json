@@ -1,24 +1,26 @@
 {
-  "name": "eth-project",
+  "name": "drizzle-box",
   "version": "1.0.0",
   "description": "",
   "main": "truffle-config.js",
   "directories": {
     "test": "test"
   },
-  "dependencies": {},
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jules-xnb/eth-project.git"
+    "url": "git+https://github.com/truffle-box/drizzle-box.git"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jules-xnb/eth-project/issues"
+    "url": "https://github.com/truffle-box/drizzle-box/issues"
   },
-  "homepage": "https://github.com/jules-xnb/eth-project#readme"
+  "homepage": "https://github.com/truffle-box/drizzle-box#readme",
+  "dependencies": {
+    "@openzeppelin/contracts": "^2.4.0"
+  }
 }
