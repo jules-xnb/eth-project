@@ -24,6 +24,8 @@
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
 
+const path = require("path");
+
 module.exports = {
   /**
    * Networks define how you connect to your ethereum client and let you set the
@@ -34,8 +36,15 @@ module.exports = {
    *
    * $ truffle test --network <network-name>
    */
-
+  // See <http://truffleframework.com/docs/advanced/configuration>
+  // to customize your Truffle configuration!
+  contracts_build_directory: path.join(__dirname, "app/src/contracts"),
   networks: {
+    develop: { // default with truffle unbox is 7545, but we can use develop to test changes, ex. truffle migrate --network develop
+      host: "127.0.0.1",
+      port: 7545,
+      network_id: "*"
+    }
     // Useful for testing. The `development` name is special - truffle uses it by default
     // if it's defined here and no other network is specified at the command line.
     // You should run a client (like ganache-cli, geth or parity) in a separate terminal
