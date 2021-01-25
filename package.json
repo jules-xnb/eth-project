@@ -1,0 +1,24 @@
+{
+  "name": "eth-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jules-xnb/eth-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jules-xnb/eth-project/issues"
+  },
+  "homepage": "https://github.com/jules-xnb/eth-project#readme"
+}
