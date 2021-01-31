@@ -39,10 +39,14 @@ class App extends Component {
     if (userData) {
       const user = new web3.eth.UserContract(UserContract.abi, userData.address)
       this.setState({user})
-      const userRegistered = await user.methods.getrIsRegistered(this.state.account).call()
-      this.setState({ userRegistered: userRegistered.toString() })
-      let userBalance = await user.methods.getBalance(this.state.account).call()
-      this.setState({ userBalance: userBalance.toString() })
+      const userRegistered = await user.methods.getrIsRegistered().call()
+      this.setState({ userRegistered: userRegistered })
+      // On récupère la balance de la personne connectée
+      let userBalance = await user.eth.getBalance(this.account)
+      userBalance = web3.utils.fromWei(userBalance, 'ether')
+      this.setState({ userBalance: userBalance })
+      let userName = await user.methods.getName().call()
+      this.setState({ userName: userName })
     } else {
       window.alert('User contract not deployed to detected network.')
     }
@@ -86,10 +90,11 @@ class App extends Component {
     this.state = {
       account: '0x0',
       userRegistered: {},
+      userBalance: '0',
+      loading: true
       // daiToken: {},
       // daiTokenBalance: '0',
       // stakingBalance: '0',
-      loading: true
     }
   }
 
@@ -101,6 +106,8 @@ class App extends Component {
     } else {
       content = <Main
         userRegistered={this.state.userRegistered}
+        userBalance={this.state.userBalance}
+        userName={this.state.userName}
         // daiTokenBalance={this.state.daiTokenBalance}
         // stakingBalance={this.state.stakingBalance}
         // stakeTokens={this.stakeTokens}
@@ -116,7 +123,6 @@ class App extends Component {
             <main role="main" className="col-lg-12 ml-auto mr-auto" style={{ maxWidth: '600px' }}>
               <div className="content mr-auto ml-auto">
                 <a
-                  href="http://www.dappuniversity.com/bootcamp"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
