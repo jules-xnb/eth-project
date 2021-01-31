@@ -28,6 +28,9 @@ contract UserContract {
     function getName () external view returns ( string memory) {
         return user[msg.sender].name ; 
     }
-    
+
+    function getIsRegistered () external view returns (bool) {
+        return user[msg.sender].registered ; 
+    }    
 
 }
