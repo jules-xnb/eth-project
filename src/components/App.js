@@ -56,6 +56,21 @@ class App extends Component {
     //   window.alert('TokenFarm contract not deployed to detected network.')
     // }
 
+    //Load User
+    const userData = UserContract.networks[networkId]
+    if (userData) {
+      const user = new web3.eth.UserContract(UserContract.abi, userData.address)
+      this.setState({user})
+      const userRegistered = await user.methods.getrIsRegistered(this.state.account).call()
+      this.setState({ userRegistered: userRegistered.toString() })
+      let userBalance = await user.methods.getBalance(this.state.account).call()
+      this.setState({ userBalance: userBalance.toString() })
+    } else {
+      window.alert('User contract not deployed to detected network.')
+    }
+
+
+
     this.setState({ loading: false })
   }
 
@@ -92,6 +107,7 @@ class App extends Component {
     super(props)
     this.state = {
       account: '0x0',
+      userRegistered: {},
       // daiToken: {},
       // dappToken: {},
       // tokenFarm: {},
@@ -104,15 +120,17 @@ class App extends Component {
 
   render() {
     let content
+    
     if(this.state.loading) {
       content = <p id="loader" className="text-center">Loading...</p>
     } else {
       content = <Main
-        daiTokenBalance={this.state.daiTokenBalance}
-        dappTokenBalance={this.state.dappTokenBalance}
-        stakingBalance={this.state.stakingBalance}
-        stakeTokens={this.stakeTokens}
-        unstakeTokens={this.unstakeTokens}
+        userRegistered={this.state.userRegistered}
+        // daiTokenBalance={this.state.daiTokenBalance}
+        // dappTokenBalance={this.state.dappTokenBalance}
+        // stakingBalance={this.state.stakingBalance}
+        // stakeTokens={this.stakeTokens}
+        // unstakeTokens={this.unstakeTokens}
       />
     }
 
