@@ -7,22 +7,84 @@ class Main extends Component {
     return (
       <div id="content" className="mt-3">
 
-        <table className="table table-borderless text-muted text-center">
+        <form className="mb-3" onSubmit={(event) => {
+            event.newRegistered()
+            let name
+            name = this.input.value.toString()
+            this.props.register(name)
+          }}>
+          <div className="input-group mb-4">
+            <input
+              type="text"
+              ref={(input) => { this.input = input }}
+              className="form-control form-control-lg"
+              placeholder="Your name"
+              required />
+            <div className="input-group-append">
+              <button type="submit" className="btn btn-primary btn-block btn-lg">Register</button>
+            </div>
+          </div>
+        </form>
+
+        <b><p className="text-muted">User name: {this.props.userName}</p></b>
+        <b><p className="text-muted">User Balance: {window.web3.utils.fromWei(this.props.userBalance, 'Ether')} CT</p></b>
+        <b><p className="text-muted">User Address: {(this.props.account)}</p></b>
+
+
+        <p><b>Buy Token: </b></p>
+        <div className="input-group mb-4">
+          <input
+            type="text"
+            ref={(input) => { this.input = input }}
+            className="form-control form-control-lg"
+            placeholder="How many do you want ?"
+            required />
+            <div className="input-group-append">
+              <button
+                type="submit"
+                className="btn btn-primary btn-block btn-lg"
+                onClick={(event) => {
+                  event.newBuy()
+                  this.props.buyToken()
+                }}>
+                  BUY
+              </button>
+            </div>
+          </div>
+
+          <p><b>Sell Token: </b></p>
+        <div className="input-group mb-4">
+          <input
+            type="text"
+            ref={(input) => { this.input = input }}
+            className="form-control form-control-lg"
+            placeholder="How many do you want ?"
+            required />
+            <div className="input-group-append">
+              <button
+                type="submit"
+                className="btn btn-primary btn-block btn-lg"
+                onClick={(event) => {
+                  event.newSell()
+                  this.props.sellToken()
+                }}>
+                  Sell
+              </button>
+            </div>
+          </div>
+
+        {/* <table className="table table-borderless text-muted text-center">
           <thead>
             <tr>
-              {/* <th scope="col">Staking Balance</th>
-              <th scope="col">Reward Balance</th> */}
               <th scope="col">User Balance</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              {/* <td>{window.web3.utils.fromWei(this.props.stakingBalance, 'Ether')} mDAI</td> */}
-              {/* <td>{window.web3.utils.fromWei(this.props.dappTokenBalance, 'Ether')} DAPP</td> */}
               <td>{window.web3.utils.fromWei(this.props.userBalance, 'Ether')} CT</td>
             </tr>
           </tbody>
-        </table>
+        </table> */}
 
         <div className="card mb-4" >
 

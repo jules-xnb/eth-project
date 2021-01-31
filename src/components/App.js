@@ -35,16 +35,26 @@ class App extends Component {
     //   window.alert('DaiToken contract not deployed to detected network.')
     // }
 
+    //Load Casino
+    const casinoData = Casino.networks[networkId]
+    if (casinoData) {
+      const casino = new web3.eth.Contract(Casino.abi, casinoData.address)
+      this.setState({casino})
+
+      let register = await this.state.casino.methods.register(this.state.account).call()
+      this.setState({ register: register})
+      
+
+
+    } else {
+      window.alert('Casino contract not deployed to detected network.')
+    }
+
     //Load User
     const userData = UserContract.networks[networkId]
     if (userData) {
       const user = new web3.eth.Contract(UserContract.abi, userData.address)
       this.setState({user})
-      console.log(this.state.user)
-
-      const userRegistered = await this.state.user.methods.getIsRegistered().call()
-      
-      this.setState({ userRegistered: userRegistered })
 
       // On récupère la balance de la personne connectée
       /*let userBalance = await this.state.user.methods.getBalance()
@@ -97,8 +107,9 @@ class App extends Component {
     super(props)
     this.state = {
       account: '0x0',
-      userRegistered: {},
       userBalance: '0',
+      userName: 'name',
+      register: '',
       loading: true,
       user: {}
       // daiToken: {},
@@ -114,7 +125,7 @@ class App extends Component {
       content = <p id="loader" className="text-center">Loading...</p>
     } else {
       content = <Main
-        userRegistered={this.state.userRegistered}
+        register={this.state.register}
         userBalance={this.state.userBalance}
         userName={this.state.userName}
         // daiTokenBalance={this.state.daiTokenBalance}

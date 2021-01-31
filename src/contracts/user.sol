@@ -30,12 +30,7 @@ contract UserContract {
     }
 
     function getIsRegistered () external view returns (bool) {
-        for(uint i = 0; i < users.length; i++){
-            if(users[i].registered){
-                return true;
-            }
-        }
-        return false;
+        return user[msg.sender].registered ;
     }    
 
 }
