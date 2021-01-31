@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import dai from '../dai.png'
+import CT from '../token.png'
 
 class Main extends Component {
 
@@ -48,8 +48,8 @@ class Main extends Component {
                   required />
                 <div className="input-group-append">
                   <div className="input-group-text">
-                    <img src={dai} height='32' alt=""/>
-                    &nbsp;&nbsp;&nbsp; mDAI
+                    <img src={CT} height='32' alt=""/>
+                    &nbsp;&nbsp;&nbsp; CT
                   </div>
                 </div>
               </div>
