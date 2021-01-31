@@ -34,28 +34,6 @@ class App extends Component {
     //   window.alert('DaiToken contract not deployed to detected network.')
     // }
 
-    // Load DappToken
-    // const dappTokenData = DappToken.networks[networkId]
-    // if(dappTokenData) {
-    //   const dappToken = new web3.eth.Contract(DappToken.abi, dappTokenData.address)
-    //   this.setState({ dappToken })
-    //   let dappTokenBalance = await dappToken.methods.balanceOf(this.state.account).call()
-    //   this.setState({ dappTokenBalance: dappTokenBalance.toString() })
-    // } else {
-    //   window.alert('DappToken contract not deployed to detected network.')
-    // }
-
-    // Load TokenFarm
-    // const tokenFarmData = TokenFarm.networks[networkId]
-    // if(tokenFarmData) {
-    //   const tokenFarm = new web3.eth.Contract(TokenFarm.abi, tokenFarmData.address)
-    //   this.setState({ tokenFarm })
-    //   let stakingBalance = await tokenFarm.methods.stakingBalance(this.state.account).call()
-    //   this.setState({ stakingBalance: stakingBalance.toString() })
-    // } else {
-    //   window.alert('TokenFarm contract not deployed to detected network.')
-    // }
-
     //Load User
     const userData = UserContract.networks[networkId]
     if (userData) {
@@ -109,10 +87,7 @@ class App extends Component {
       account: '0x0',
       userRegistered: {},
       // daiToken: {},
-      // dappToken: {},
-      // tokenFarm: {},
       // daiTokenBalance: '0',
-      // dappTokenBalance: '0',
       // stakingBalance: '0',
       loading: true
     }
@@ -127,7 +102,6 @@ class App extends Component {
       content = <Main
         userRegistered={this.state.userRegistered}
         // daiTokenBalance={this.state.daiTokenBalance}
-        // dappTokenBalance={this.state.dappTokenBalance}
         // stakingBalance={this.state.stakingBalance}
         // stakeTokens={this.stakeTokens}
         // unstakeTokens={this.unstakeTokens}
