@@ -7,6 +7,7 @@ import UserContract from '../abis/UserContract.json'
 import Navbar from './Navbar'
 import Main from './Main'
 import './App.css'
+import { from } from 'core-js/fn/array'
 
 class App extends Component {
 
@@ -37,16 +38,23 @@ class App extends Component {
     //Load User
     const userData = UserContract.networks[networkId]
     if (userData) {
-      const user = new web3.eth.UserContract(UserContract.abi, userData.address)
+      const user = new web3.eth.Contract(UserContract.abi, userData.address)
       this.setState({user})
-      const userRegistered = await user.methods.getrIsRegistered().call()
+      console.log(this.state.user)
+
+      const userRegistered = await this.state.user.methods.getIsRegistered().call()
+      
       this.setState({ userRegistered: userRegistered })
+
       // On récupère la balance de la personne connectée
-      let userBalance = await user.eth.getBalance(this.account)
+      /*let userBalance = await this.state.user.methods.getBalance()
       userBalance = web3.utils.fromWei(userBalance, 'ether')
-      this.setState({ userBalance: userBalance })
-      let userName = await user.methods.getName().call()
+      this.setState({ userBalance: userBalance })*/
+
+      let userName = await this.state.user.methods.getName().call()
       this.setState({ userName: userName })
+
+     
     } else {
       window.alert('User contract not deployed to detected network.')
     }
@@ -91,7 +99,8 @@ class App extends Component {
       account: '0x0',
       userRegistered: {},
       userBalance: '0',
-      loading: true
+      loading: true,
+      user: {}
       // daiToken: {},
       // daiTokenBalance: '0',
       // stakingBalance: '0',
