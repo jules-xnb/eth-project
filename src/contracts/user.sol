@@ -31,6 +31,5 @@ contract UserContract {
 
     function getIsRegistered () external view returns (bool) {
         return user[msg.sender].registered ;
-    }    
-
+    }
 }
