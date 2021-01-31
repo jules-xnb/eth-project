@@ -10,7 +10,7 @@ contract UserContract {
     }
 
     // Tableau d'utilisteur pour calculer les tokens disponibles
-    User[] users ; 
+    User[] users; 
 
     mapping (address => User) internal user ;
 
@@ -28,9 +28,8 @@ contract UserContract {
     function getName () external view returns ( string memory) {
         return user[msg.sender].name ; 
     }
-    
-    function getIsRegistered () external view returns (bool) {
-        return user[msg.sender].registered ; 
-    }
 
+    function getIsRegistered () external view returns (bool) {
+        return user[msg.sender].registered ;
+    }
 }
